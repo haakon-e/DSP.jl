@@ -172,7 +172,7 @@ function rms(s::AbstractArray{T}; dims=:) where {T<:Number}
     if dims === (:)
         return sqrt(mean(abs2, s))
     else
-        return sqrt.(mean(abs2, s; dims=dims))
+        return sqrt.(sum(abs2, s; dims=dims) ./ prod(size(s, d) for d in dims))
     end
 end
 
